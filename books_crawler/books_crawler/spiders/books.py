@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import glob
 from scrapy import Spider
 from scrapy.http import Request
 
@@ -9,8 +11,9 @@ def product_info(response, value):
 class BooksSpider(Spider):
     name = 'books'
     allowed_domains = ['books.toscrape.com']
-    start_urls = ['http://books.toscrape.com']
 
+    def __init__(self, category):
+        self.start_urls = [category]
 
     def parse(self, response):
         books = response.xpath('//h3/a/@href').extract()
@@ -61,7 +64,11 @@ class BooksSpider(Spider):
         }
 
 
-
+    def close(self, reason):
+        # This will find the latest .csv file and rename the file
+        # to be the same, with a number attached
+        csv_file = max(glob.iglob('*.csv'), key=os.path.getctime)
+        os.rename(csv_file, 'foobar.csv') 
 
 
 

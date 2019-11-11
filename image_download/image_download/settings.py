@@ -66,8 +66,9 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'scrapy.pipelines.images.ImagesPipeline': 1,
+    'image_download.pipelines.ImageDownloadPipeline': 2,  # Value 2 for priority
 }
-IMAGES_STORE = './foobar/'
+IMAGES_STORE = '/Users/Michael/projects/scrapy_projects/image_download/foobar'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

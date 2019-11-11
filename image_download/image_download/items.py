@@ -15,4 +15,4 @@ class ImageDownloadItem(scrapy.Item):
     price = scrapy.Field()
 
     image_urls = scrapy.Field()
-    image = scrapy.Field()
+    images = scrapy.Field()
